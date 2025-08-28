@@ -6,14 +6,14 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,  /* Retry on CI only */
   workers: process.env.CI ? 1 : undefined,/* Opt out of parallel tests on CI. */
-  reporter: 'html', /* Reporter to use. See https://playwright.dev/docs/test-reporters */
+  reporter: [['html'],['github'], /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   //timeout:5000,  // basic timeout for all the test
   expect:{
     timeout: 5000 // expect assertion timeout
   },
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    headless:false,
+    headless:true,
     screenshot:'only-on-failure',
     testIdAttribute:'aria-label',
     /* Base URL to use in actions like `await page.goto('/')`. */
